@@ -48,7 +48,7 @@ public class GeneralSDK {
     }
 
     public void launch(Activity activity) {
-        Intent intent = new Intent(activity, MainActivity.class);
+        Intent intent = new Intent(activity, GeneralMainActivity.class);
         intent.putExtra(APP_SCHEME_EXTRA, this.appScheme);
         intent.putExtra(END_POINT_EXTRA, this.endPoint);
         activity.startActivity(intent);

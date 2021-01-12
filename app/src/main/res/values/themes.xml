@@ -15,6 +15,7 @@
     </style>
 
     <style name="Theme.SDKTestingNoActionBar" parent="Theme.MaterialComponents.DayNight.NoActionBar">
-
+        <item name="android:windowBackground">@drawable/splesh</item>
     </style>
+
 </resources>

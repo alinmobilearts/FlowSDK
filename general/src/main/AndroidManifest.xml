@@ -8,7 +8,7 @@
 
     <application android:usesCleartextTraffic="true">
 
-        <activity android:name="com.mag.general.MainActivity"
+        <activity android:name="com.mag.general.GeneralMainActivity"
             android:theme="@style/ThemeFullscreen" >
         </activity>
 
