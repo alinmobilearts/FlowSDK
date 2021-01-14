@@ -31,7 +31,6 @@ android {
 }
 
 dependencies {
-
     implementation 'androidx.appcompat:appcompat:1.2.0'
     implementation 'com.google.android.material:material:1.2.1'
     implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
@@ -44,10 +43,10 @@ dependencies {
 //region Publish to jCenter
 def libGroupId = 'com.mag'
 def libArtifactId = 'general'
-def libVersion = '0.0.1'
+def libVersion = '0.0.2'
 def libDesc = 'This is an Android project allowing to track installs over adjust'
 def libLicenses = ['Apache-2.0']
-def libVCSUrl = 'https://github.com/alinmobilearts/FlowSDK.git'
+def libVCSUrl = 'https://github.com/alinmobilearts/FlowSDK'
 
 // Generate Source Jar
 task sourceJar(type: Jar) {
@@ -64,6 +63,16 @@ publishing {
             version libVersion
             artifact(sourceJar)
             artifact("$buildDir/outputs/aar/$libArtifactId-release.aar")
+
+            pom.withXml {
+                def dependencies = asNode().appendNode('dependencies')
+                configurations.getByName("releaseCompileClasspath").getResolvedConfiguration().getFirstLevelModuleDependencies().each {
+                    def dependency = dependencies.appendNode('dependency')
+                    dependency.appendNode('groupId', it.moduleGroup)
+                    dependency.appendNode('artifactId', it.moduleName)
+                    dependency.appendNode('version', it.moduleVersion)
+                }
+            }
         }
     }
 }

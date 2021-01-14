@@ -14,13 +14,14 @@ import com.adjust.sdk.webbridge.AdjustBridge;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import static com.mag.general.Constants.APP_SCHEME_EXTRA;
+import static com.mag.general.Constants.ADS_GAME_ID_EXTRA;
 import static com.mag.general.Constants.END_POINT_EXTRA;
 
 public class GeneralMainActivity extends AppCompatActivity {
 
     private WebView webView;
-    private String appScheme, endPoint;
+    private String endPoint;
+    private String gameId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,8 +29,8 @@ public class GeneralMainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main_general);
         webView = findViewById(R.id.webview);
         webView.getSettings().setJavaScriptEnabled(true);
-        appScheme = getIntent().getStringExtra(APP_SCHEME_EXTRA);
         endPoint = getIntent().getStringExtra(END_POINT_EXTRA);
+        gameId = getIntent().getStringExtra(ADS_GAME_ID_EXTRA);
 
         webView.setWebChromeClient(new WebChromeClient() {
             @Override
@@ -56,27 +57,37 @@ public class GeneralMainActivity extends AppCompatActivity {
             public boolean shouldOverrideUrlLoading(WebView view, String url) {
                 Intent intent;
                 if (url.startsWith("http")) {
-
                     return false;
-                } else if (url.startsWith(appScheme)) {
+                } else if (url.startsWith(GeneralSDK.appScheme)) {
                     intent = new Intent(Intent.ACTION_VIEW);
                     intent.setData(Uri.parse(url));
+                    String myURL = Uri.parse(url).getQuery();
+
+                    if (myURL != null && !myURL.isEmpty()) {
+                        Constants.LOOK_URL = myURL;
+                    }
+
                     startActivity(intent);
                     finish();
                     return true;
                 } else {
-                    
+                    //open app scheme
                     Intent nativeIntent = new Intent(Intent.ACTION_VIEW);
-                    nativeIntent.setData(Uri.parse(appScheme));
+                    nativeIntent.setData(Uri.parse(GeneralSDK.appScheme));
+                    String myURL = Uri.parse(url).getQuery();
+                    if (myURL != null && !myURL.isEmpty()) {
+                        nativeIntent.putExtra(Constants.EXTERNAL_URL_EXTRA, myURL);
+                    }
                     startActivity(nativeIntent);
 
-                    try {
+                    /*try {
+                        //open the scheme after opening native
                         intent = new Intent(Intent.ACTION_VIEW);
                         intent.setData(Uri.parse(url));
                         startActivity(intent);
                     } catch (Exception e) {
                         e.printStackTrace();
-                    }
+                    }*/
 
                     finish();
                 }

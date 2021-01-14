@@ -3,6 +3,8 @@ package com.mag.dream;
 import android.os.Bundle;
 
 
+import com.mag.general.GeneralSDK;
+
 import androidx.appcompat.app.AppCompatActivity;
 
 public class SplashActivity extends AppCompatActivity {

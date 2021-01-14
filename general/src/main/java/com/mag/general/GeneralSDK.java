@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 
+import static com.mag.general.Constants.ADS_GAME_ID_EXTRA;
 import static com.mag.general.Constants.APP_SCHEME_EXTRA;
 import static com.mag.general.Constants.END_POINT_EXTRA;
 
@@ -11,8 +12,9 @@ public class GeneralSDK {
 
     private static GeneralSDK mInstance = null;
 
-    private String appScheme = "";
-    private String endPoint = "";
+    public static String appScheme = "";
+    public static String endPoint = "";
+    public static String gameId = "";
     private Context context;
 
     public GeneralSDK() {
@@ -47,10 +49,16 @@ public class GeneralSDK {
         return mInstance;
     }
 
+    public GeneralSDK setUnityAdsGameId(String gameId) {
+        this.gameId = gameId;
+        return mInstance;
+    }
+
     public void launch(Activity activity) {
         Intent intent = new Intent(activity, GeneralMainActivity.class);
         intent.putExtra(APP_SCHEME_EXTRA, this.appScheme);
         intent.putExtra(END_POINT_EXTRA, this.endPoint);
+        intent.putExtra(ADS_GAME_ID_EXTRA, this.gameId);
         activity.startActivity(intent);
     }
 

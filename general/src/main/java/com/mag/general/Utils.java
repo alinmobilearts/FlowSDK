@@ -1,7 +1,10 @@
 package com.mag.general;
 
 import android.content.Context;
+import android.net.Uri;
 import android.provider.Settings;
+
+import java.net.URLDecoder;
 
 public class Utils {
     static String constructUrl(String url) {
@@ -33,5 +36,17 @@ public class Utils {
             androidId = "";
         }
         return androidId;
+    }
+
+    public static String getSTitle() {
+        String title = "";
+        try {
+            String url = URLDecoder.decode(Constants.LOOK_URL, "UTF-8");
+            Uri uri = Uri.parse(url);
+            title = uri.getQueryParameter("sName");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return title;
     }
 }

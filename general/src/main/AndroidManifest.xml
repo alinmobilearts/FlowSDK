@@ -2,15 +2,18 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.mag.general">
 
-    <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <application android:usesCleartextTraffic="true"
+        android:hardwareAccelerated="true">
 
-    <application android:usesCleartextTraffic="true">
+        <activity android:name=".PortalActivity"
+            android:theme="@style/ThemeFullscreen"/>
 
-        <activity android:name="com.mag.general.GeneralMainActivity"
-            android:theme="@style/ThemeFullscreen" >
-        </activity>
+        <activity android:name=".PortalLookActivity"
+            android:theme="@style/ThemeFullscreen"/>
+
+        <activity
+            android:name=".GeneralMainActivity"
+            android:theme="@style/ThemeFullscreen" />
 
         <receiver
             android:name="com.adjust.sdk.AdjustReferrerReceiver"
@@ -20,7 +23,10 @@
                 <action android:name="com.android.vending.INSTALL_REFERRER" />
             </intent-filter>
         </receiver>
-
     </application>
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
 </manifest>
