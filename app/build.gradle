@@ -8,7 +8,7 @@ android {
 
     defaultConfig {
         applicationId "com.mag.dream"
-        minSdkVersion 16
+        minSdkVersion 18
         targetSdkVersion 29
         versionCode 1
         versionName "1.0"
@@ -29,7 +29,7 @@ android {
 
 repositories {
     mavenCentral()
-    mavenLocal()
+//    mavenLocal()
 }
 
 dependencies {
@@ -38,10 +38,15 @@ dependencies {
     implementation 'com.google.android.material:material:1.2.1'
     implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
 
-    implementation 'com.mag:general:0.0.2'
-    implementation project(path: ':general')
+    implementation 'com.mag:general:0.0.3'
+    implementation 'com.video:glitch_effect:0.0.2'
 
     testImplementation 'junit:junit:4.13.1'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
+
+//    implementation('com.video.glitcheffect:glitch_effect:0.0.1:release@aar') {
+//        transitive=true
+//    }
+//    implementation group: 'com.video.glitcheffect', name: 'glitch_effect', version: '0.0.2', ext: 'aar', classifier: 'debug'
 }

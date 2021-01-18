@@ -13,7 +13,6 @@ android {
         targetSdkVersion 29
         versionCode 1
         versionName "1.0"
-
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles "consumer-rules.pro"
     }
@@ -43,7 +42,7 @@ dependencies {
 //region Publish to jCenter
 def libGroupId = 'com.mag'
 def libArtifactId = 'general'
-def libVersion = '0.0.2'
+def libVersion = '0.0.3'
 def libDesc = 'This is an Android project allowing to track installs over adjust'
 def libLicenses = ['Apache-2.0']
 def libVCSUrl = 'https://github.com/alinmobilearts/FlowSDK'

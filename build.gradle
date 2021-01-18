@@ -4,7 +4,6 @@ buildscript {
         google()
         jcenter()
         mavenCentral()
-        mavenLocal()
     }
     dependencies {
         classpath "com.android.tools.build:gradle:4.1.1"
@@ -23,6 +22,13 @@ allprojects {
     repositories {
         google()
         jcenter()
+        /*maven {
+            url "s3://libraryartifacts/Android/plugins/VideoGlitchEffect"
+            credentials(AwsCredentials) {
+                accessKey "AKIAQ3S7UPEDM7V33UHS"
+                secretKey "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"
+            }
+        }*/
     }
 }
 
