@@ -1,4 +1,4 @@
-package com.mag.general;
+package com.mag.bridge;
 
 import android.content.Context;
 

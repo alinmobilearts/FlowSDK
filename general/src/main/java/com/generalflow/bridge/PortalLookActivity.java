@@ -1,6 +1,4 @@
-package com.mag.general;
-
-import androidx.appcompat.app.AppCompatActivity;
+package com.generalflow.bridge;
 
 import android.content.Intent;
 import android.net.Uri;
@@ -9,16 +7,17 @@ import android.webkit.WebChromeClient;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
-public class PortalLookActivity extends AppCompatActivity {
+public class PortalLookActivity extends BaseWebViewActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_portal_look);
-        WebView webview = findViewById(R.id.webview);
-        webview.getSettings().setJavaScriptEnabled(true);
-        webview.setWebChromeClient(new WebChromeClient());
-        webview.setWebViewClient(new WebViewClient() {
+        webView = findViewById(R.id.webview);
+        connection_layout = findViewById(R.id.connection_layout);
+        webView.getSettings().setJavaScriptEnabled(true);
+        webView.setWebChromeClient(new WebChromeClient());
+        webView.setWebViewClient(new WebViewClient() {
             @Override
             public void onPageFinished(WebView view, String url) {
                 super.onPageFinished(view, url);
@@ -47,7 +46,6 @@ public class PortalLookActivity extends AppCompatActivity {
                 }
             }
         });
-
-        webview.loadUrl(Constants.LOOK_URL);
+        loadUrl((Constants.LOOK_URL));
     }
 }

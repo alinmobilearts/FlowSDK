@@ -1,4 +1,3 @@
-include ':glitch_effect'
 include ':general'
 include ':app'
 rootProject.name = "SDKTesting"

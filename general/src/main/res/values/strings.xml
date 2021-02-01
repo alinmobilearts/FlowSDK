@@ -1,1 +1,4 @@
-<resources></resources>
+<resources>
+    <string name="no_connection">No Internet Connection</string>
+    <string name="retry">Try Again</string>
+</resources>

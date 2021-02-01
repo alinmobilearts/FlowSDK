@@ -1,8 +1,8 @@
 plugins {
     id 'com.android.library'
-    id 'com.jfrog.bintray'
-    id 'maven-publish'
 }
+apply from: project.file("gradle-mvn-push.gradle")
+
 
 android {
     compileSdkVersion 29
@@ -22,6 +22,9 @@ android {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
+        debug {
+            debuggable true
+        }
     }
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
@@ -29,17 +32,43 @@ android {
     }
 }
 
+
 dependencies {
     implementation 'androidx.appcompat:appcompat:1.2.0'
     implementation 'com.google.android.material:material:1.2.1'
     implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
-    implementation 'com.adjust.sdk:adjust-android:4.25.0'
-    implementation 'com.adjust.sdk:adjust-android-webbridge:4.25.0'
+    implementation 'com.adjust.sdk:adjust-android:4.24.1'
+    implementation 'com.adjust.sdk:adjust-android-webbridge:4.24.1'
     implementation 'com.android.installreferrer:installreferrer:2.2'
     implementation 'com.google.android.gms:play-services-ads-identifier:17.0.0'
+
+    // For Firebase Notification
+    implementation platform('com.google.firebase:firebase-bom:26.1.0')
+    implementation 'com.google.firebase:firebase-analytics'
+    implementation 'com.google.firebase:firebase-messaging'
 }
 
-//region Publish to jCenter
+
+allprojects {
+    repositories {
+
+        jcenter()
+        google()
+        flatDir {
+            dirs 'libs'
+        }
+        maven {
+            url "s3://libraryartifacts/Android/generalFlowBridgeSDK"
+            //"s3://libraryartifacts/Android/generalflowsdk"
+            credentials(AwsCredentials) {
+                accessKey "AKIAQ3S7UPEDM7V33UHS"
+                secretKey "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"
+            }
+        }
+    }
+}
+
+/*//region Publish to jCenter
 def libGroupId = 'com.mag'
 def libArtifactId = 'general'
 def libVersion = '0.0.3'
@@ -98,4 +127,4 @@ bintray {
         }
     }
 }
-//endregion
+//endregion*/

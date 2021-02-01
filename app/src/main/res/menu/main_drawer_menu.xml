@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+   <!-- <group android:checkableBehavior="single">
+
+        <item
+            android:id="@+id/menuHome"
+            android:icon="@drawable/icon_home"
+            android:title="@string/drawer_home" />
+
+        <item
+            android:id="@+id/menuCategories"
+            android:icon="@drawable/icon_categories"
+            android:title="@string/drawer_category" />
+
+        <item
+            android:id="@+id/menuFavourite"
+            android:icon="@drawable/icon_favourite"
+            android:title="@string/drawer_favourite" />
+
+    </group>
+
+    <item
+        android:id="@+id/Communicate"
+        android:title="@string/title_communicate">
+        <menu>
+            <item
+                android:id="@+id/menuShare"
+                android:icon="@drawable/icon_share"
+                android:title="@string/drawer_share" />
+        </menu>
+    </item>-->
+
+</menu>

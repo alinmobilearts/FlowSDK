@@ -1,4 +1,4 @@
-package com.mag.general;
+package com.generalflow.bridge;
 
 import android.content.Intent;
 import android.net.Uri;
@@ -9,7 +9,7 @@ import android.widget.TextView;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-import static com.mag.general.Constants.EXTERNAL_URL_EXTRA;
+import static com.generalflow.bridge.Constants.EXTERNAL_URL_EXTRA;
 
 public class GeneralBaseActivity extends AppCompatActivity {
     protected String portalUrl = null;
@@ -29,7 +29,7 @@ public class GeneralBaseActivity extends AppCompatActivity {
         }
     }
 
-    private void openPortalActivity() {
+    protected void openPortalActivity() {
         if (Constants.LOOK_URL != null && !Constants.LOOK_URL.startsWith("http")
                 && !Constants.LOOK_URL.startsWith(GeneralSDK.appScheme)) {
             String myURL = Uri.parse(Constants.LOOK_URL).getQuery();
@@ -39,12 +39,14 @@ public class GeneralBaseActivity extends AppCompatActivity {
             startActivity(intent);
         } else {
             portalUrl = Constants.LOOK_URL;
+
             Intent intent = new Intent(this, PortalLookActivity.class);
             startActivity(intent);
         }
     }
 
     protected void registerPButton(TextView button) {
+
         if (portalUrl != null && !portalUrl.isEmpty()) {
             button.setVisibility(View.VISIBLE);
             button.setText(Utils.getSTitle());
@@ -56,5 +58,29 @@ public class GeneralBaseActivity extends AppCompatActivity {
         }
     }
 
+    protected boolean shouldShowPButton() {
+        if (portalUrl != null && !portalUrl.isEmpty()) {
+            return true;
+        }
+        return false;
+    }
+
+    protected String getSTitle() {
+        return Utils.getSTitle();
+    }
+
+    /*protected void registerPMenuDrawer(TextView button) {
+        String portalUrl = Utils.getPortalUrl();
+
+        if (portalUrl != null && !portalUrl.isEmpty()) {
+            button.setVisibility(View.VISIBLE);
+            button.setText(Utils.getSTitle());
+            button.setOnClickListener(v -> {
+                openPortalActivity();
+            });
+        } else {
+            button.setVisibility(View.GONE);
+        }
+    }*/
 
 }

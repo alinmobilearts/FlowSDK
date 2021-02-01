@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1019996055202",
+    "project_id": "apps-110a0",
+    "storage_bucket": "apps-110a0.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1019996055202:android:ef06b8e97f973f37a099fb",
+        "android_client_info": {
+          "package_name": "com.mag.dream"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1019996055202-iv9kdgg01s0pu0gkuo12p4f8g76go53l.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBrCDj9Lj89HamorAMNCP-HxjFm_5P29WY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1019996055202-iv9kdgg01s0pu0gkuo12p4f8g76go53l.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,16 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.mag.general">
+    package="com.generalflow.bridge">
 
-    <application android:usesCleartextTraffic="true"
-        android:hardwareAccelerated="true">
-
-        <activity android:name=".PortalActivity"
-            android:theme="@style/ThemeFullscreen"/>
-
-        <activity android:name=".PortalLookActivity"
-            android:theme="@style/ThemeFullscreen"/>
-
+    <application
+        android:hardwareAccelerated="true"
+        android:usesCleartextTraffic="true">
+        <activity android:name=".GeneralSplashActivity"></activity>
+        <activity
+            android:name=".PortalActivity"
+            android:theme="@style/ThemeFullscreen" />
+        <activity
+            android:name=".PortalLookActivity"
+            android:theme="@style/ThemeFullscreen" />
         <activity
             android:name=".GeneralMainActivity"
             android:theme="@style/ThemeFullscreen" />
@@ -23,10 +24,18 @@
                 <action android:name="com.android.vending.INSTALL_REFERRER" />
             </intent-filter>
         </receiver>
-    </application>
-    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
-    <uses-permission android:name="android.permission.INTERNET" />
 
+        <service
+            android:name=".MyFirebaseMessagingService"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+            </intent-filter>
+        </service>
+    </application>
+    <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
 
 </manifest>
