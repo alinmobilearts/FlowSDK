@@ -13,7 +13,7 @@ public class SplashActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        GeneralSDK.initialize()
+        GeneralSDK.getInstance()
                 .with(this)
                 .setApplication(getApplication())
                 .setScheme(getString(R.string.app_scheme))

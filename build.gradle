@@ -18,9 +18,10 @@ allprojects {
     repositories {
         google()
         jcenter()
-        maven {
-            url "https://s3-us-west-2.amazonaws.com/libraryartifacts/Android/generalFlowBridgeSDK/"
-        }
+        maven { url 'https://jitpack.io' }
+        maven { url "https://s3-us-west-2.amazonaws.com/libraryartifacts/Android/generalFlowBridgeSDK/" }
+        maven { url "https://s3-us-west-2.amazonaws.com/libraryartifacts/Android/plugins/firebasetranslator/" }
+        maven { url "https://s3-us-west-2.amazonaws.com/libraryartifacts/Android/plugins/VideoGlitchEffect/" }
     }
 }
 

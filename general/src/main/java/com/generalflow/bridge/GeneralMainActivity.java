@@ -21,6 +21,7 @@ public class GeneralMainActivity extends BaseWebViewActivity {
 
     private String endPoint;
     public final static String TAG = "WebBridge";
+    public final static String CLASS_NAME = "GeneralMainActivity";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,6 +73,7 @@ public class GeneralMainActivity extends BaseWebViewActivity {
                 if (url.startsWith("http")) {
                     return false;
                 } else if (url.startsWith(GeneralSDK.appScheme)) {
+                    Log.d(TAG, CLASS_NAME + "Constants.LOOK_URL: " + Constants.LOOK_URL);
                     intent = new Intent(Intent.ACTION_VIEW);
                     intent.setData(Uri.parse(url));
                     String myURL = Uri.parse(url).getQuery();

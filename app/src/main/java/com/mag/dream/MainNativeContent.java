@@ -15,31 +15,30 @@ public class MainNativeContent extends GeneralBaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_native_content);
-        Button portal_btn = findViewById(R.id.portal_btn);
-        Button glitch_video = findViewById(R.id.glitch_video);
-        Button customview_btn = findViewById(R.id.customview_btn);
+//        Button portal_btn = findViewById(R.id.portal_btn);
+//        Button glitch_video = findViewById(R.id.glitch_video);
+//        Button customview_btn = findViewById(R.id.customview_btn);
+//
+//        registerPButton(portal_btn);
+//        glitch_video.setOnClickListener(v -> GlitchEffectPlugin.getInstance().launch(MainNativeContent.this));
+//
+//        if (GeneralSDK.getInstance().shouldShowAds()) {
+//            Log.d("ADS", "should show ads");
+//        } else {
+//            Log.d("ADS", "should not show ads");
+//        }
+//
+//        if (shouldShowPButton()) {
+//            customview_btn.setVisibility(View.VISIBLE);
+//            customview_btn.setText(getSTitle());
+//            customview_btn.setOnClickListener(v -> openPortalActivity());
+//        } else {
+//            customview_btn.setVisibility(View.GONE);
+//        }
+    }
 
-        registerPButton(portal_btn);
-        glitch_video.setOnClickListener(v -> GlitchEffectPlugin.getInstance().launch(MainNativeContent.this));
-
-        if (GeneralSDK.getInstance().shouldShowAds()) {
-            Log.d("ADS", "should show ads");
-        } else {
-            Log.d("ADS", "should not show ads");
-        }
-
-        if (shouldShowPButton()) {
-            customview_btn.setVisibility(View.VISIBLE);
-            customview_btn.setText(getSTitle());
-            customview_btn.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    openPortalActivity();
-                }
-            });
-        } else {
-            customview_btn.setVisibility(View.GONE);
-        }
-
+    @Override
+    protected void manageButton() {
+        registerPButton(findViewById(R.id.portal_container), findViewById(R.id.portal_text));
     }
 }
