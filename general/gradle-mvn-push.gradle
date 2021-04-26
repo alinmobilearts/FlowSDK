@@ -36,7 +36,7 @@ uploadArchives {
 
             pom.groupId = "com.generalflow"
             pom.artifactId = "bridge"
-            pom.version = "0.1.6"
+            pom.version = "0.1.9"
 
             pom.project {
                 name "generalflowbridgesdk"

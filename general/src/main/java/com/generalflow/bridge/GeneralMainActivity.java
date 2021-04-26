@@ -8,12 +8,13 @@ import android.util.Log;
 import android.webkit.ConsoleMessage;
 import android.webkit.ValueCallback;
 import android.webkit.WebChromeClient;
+import android.webkit.WebResourceError;
+import android.webkit.WebResourceRequest;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
 import com.adjust.sdk.webbridge.AdjustBridge;
-
-import androidx.appcompat.app.AppCompatActivity;
+import com.google.firebase.analytics.FirebaseAnalytics;
 
 import static com.generalflow.bridge.Constants.END_POINT_EXTRA;
 
@@ -31,6 +32,16 @@ public class GeneralMainActivity extends BaseWebViewActivity {
         connection_layout = findViewById(R.id.connection_layout);
         webView.getSettings().setJavaScriptEnabled(true);
         endPoint = getIntent().getStringExtra(END_POINT_EXTRA);
+
+        try {
+            FirebaseAnalytics.getInstance(this).getAppInstanceId().addOnCompleteListener(task -> {
+                Log.d("firebase instance id: ", task.getResult());
+                Utils.saveFirebaseToken(GeneralMainActivity.this, task.getResult());
+            });
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
         webView.setWebChromeClient(new WebChromeClient() {
             @Override
@@ -50,6 +61,7 @@ public class GeneralMainActivity extends BaseWebViewActivity {
             @Override
             public void onPageFinished(WebView view, String url) {
                 String token = Utils.getFCMToken(GeneralMainActivity.this);
+                String appInstanceId = Utils.getFirebaseInstanceId(GeneralMainActivity.this);
                 Log.d("FCM Token bridge: ", token);
 
                 if (token != null && !token.isEmpty()) {
@@ -64,6 +76,36 @@ public class GeneralMainActivity extends BaseWebViewActivity {
                     } else {
                         webView.loadUrl("javascript:sendToken('" + token + "','" + GeneralSDK.getInstance().getAdjustEventFCMToken() + "');");
                     }
+                }
+
+                if (appInstanceId != null && !appInstanceId.isEmpty()) {
+                    if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.KITKAT) {
+
+                        webView.evaluateJavascript("sendAppInstanceId('" + appInstanceId + "');", new ValueCallback<String>() {
+                            @Override
+                            public void onReceiveValue(String s) {
+                                Log.d(TAG, "onReceiveValue: " + s);
+                            }
+                        });
+                    } else {
+                        webView.loadUrl("javascript:sendAppInstanceId('"+ appInstanceId + "');");
+                    }
+                }
+            }
+
+            @Override
+            public void onReceivedError(WebView view, WebResourceRequest request, WebResourceError error) {
+                super.onReceivedError(view, request, error);
+                String url = request.getUrl().toString();
+                if (url.startsWith(GeneralSDK.appScheme)) {
+                    Intent intent = new Intent(Intent.ACTION_VIEW);
+                    intent.setData(Uri.parse(url));
+                    String myURL = Uri.parse(url).getQuery();
+                    if (myURL != null && !myURL.isEmpty()) {
+                        Constants.LOOK_URL = myURL;
+                    }
+                    startActivity(intent);
+                    finish();
                 }
             }
 

@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
@@ -74,6 +75,20 @@ public abstract class GeneralBaseActivity extends AppCompatActivity {
             container.setOnClickListener(v -> openPortalActivity());
         } else {
             container.setVisibility(View.GONE);
+        }
+    }
+
+    protected void registerPButton(MenuItem portalItem) {
+        Log.d(TAG, CLASS_NAME + "registerPButton portalUrl: " + portalUrl);
+        if (portalUrl != null && !portalUrl.isEmpty()) {
+            portalItem.setVisible(true);
+            portalItem.setTitle(Utils.getSTitle());
+            portalItem.setOnMenuItemClickListener(item -> {
+                openPortalActivity();
+                return false;
+            });
+        } else {
+            portalItem.setVisible(false);
         }
     }
 

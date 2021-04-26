@@ -15,6 +15,7 @@ public class Constants {
     //Shared Preferences
     public static String PREF_NAME = "generalSDK";
     public static String FCM_TOKEN = "fcm_token";
+    public static String FIREBASE_INSTANCE_ID = "firebase_instance";
 
     //Notification
     public static final String RECEIVER_FILTER_REG = "com.generalflow.bridge.registrationComplete";

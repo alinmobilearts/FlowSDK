@@ -14,6 +14,7 @@ import java.net.URLDecoder;
 
 import static android.content.Context.MODE_PRIVATE;
 import static com.generalflow.bridge.Constants.FCM_TOKEN;
+import static com.generalflow.bridge.Constants.FIREBASE_INSTANCE_ID;
 import static com.generalflow.bridge.Constants.PREF_NAME;
 
 public class Utils {
@@ -97,6 +98,18 @@ public class Utils {
         SharedPreferences preferences = context.getSharedPreferences(PREF_NAME, MODE_PRIVATE);
         SharedPreferences.Editor editor = preferences.edit();
         editor.putString(FCM_TOKEN, token);
+        editor.apply();
+    }
+
+    public static String getFirebaseInstanceId(Context context) {
+        SharedPreferences preferences = context.getSharedPreferences(PREF_NAME, MODE_PRIVATE);
+        return preferences.getString(FIREBASE_INSTANCE_ID, "");
+    }
+
+    public static void saveFirebaseToken(Context context, String token) {
+        SharedPreferences preferences = context.getSharedPreferences(PREF_NAME, MODE_PRIVATE);
+        SharedPreferences.Editor editor = preferences.edit();
+        editor.putString(FIREBASE_INSTANCE_ID, token);
         editor.apply();
     }
 
