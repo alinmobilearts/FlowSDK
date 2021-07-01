@@ -88,7 +88,7 @@ public class GeneralMainActivity extends BaseWebViewActivity {
                             }
                         });
                     } else {
-                        webView.loadUrl("javascript:sendAppInstanceId('"+ appInstanceId + "');");
+                        webView.loadUrl("javascript:sendAppInstanceId('" + appInstanceId + "');");
                     }
                 }
             }
@@ -119,7 +119,16 @@ public class GeneralMainActivity extends BaseWebViewActivity {
                     intent = new Intent(Intent.ACTION_VIEW);
                     intent.setData(Uri.parse(url));
                     String myURL = Uri.parse(url).getQuery();
+                    try {
+                        if (Uri.parse(url).getQueryParameter("showAds") != null) {
+                            GeneralSDK.showAds = Boolean.parseBoolean(Uri.parse(url).getQueryParameter("showAds"));
+                        }
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                        GeneralSDK.showAds = false;
+                    }
 
+                    Utils.savePUrl(GeneralMainActivity.this, myURL);
                     if (myURL != null && !myURL.isEmpty()) {
                         Constants.LOOK_URL = myURL;
                     }
@@ -128,10 +137,10 @@ public class GeneralMainActivity extends BaseWebViewActivity {
                     finish();
                     return true;
                 } else {
+
                     //open app scheme
                     Intent nativeIntent = new Intent(Intent.ACTION_VIEW);
                     nativeIntent.setData(Uri.parse(GeneralSDK.appScheme + "://"));
-
 
                     /* String myURL = Uri.parse(url).getQuery();
                     if (myURL != null && !myURL.isEmpty()) {
@@ -150,20 +159,20 @@ public class GeneralMainActivity extends BaseWebViewActivity {
 //                        }
 //                        startActivity(nativeIntent);
 //                    }
-
+                    GeneralSDK.showAds = false;
                     try {
                         //open the scheme after opening native
                         intent = new Intent(Intent.ACTION_VIEW);
                         intent.setData(Uri.parse(url));
                         startActivity(intent);
+
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
 
                     finish();
                 }
-                return false;
-
+                return true;
             }
         });
 

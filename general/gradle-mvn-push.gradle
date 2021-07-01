@@ -36,7 +36,7 @@ uploadArchives {
 
             pom.groupId = "com.generalflow"
             pom.artifactId = "bridge"
-            pom.version = "0.1.9"
+            pom.version = "0.2.9"
 
             pom.project {
                 name "generalflowbridgesdk"
@@ -60,7 +60,6 @@ uploadArchives {
 }
 
     uploadArchives {
-
         repositories {
             mavenDeployer {
                 repository(url: "file:///" + getOutputDir())

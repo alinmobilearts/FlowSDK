@@ -78,7 +78,7 @@ public abstract class GeneralBaseActivity extends AppCompatActivity {
         }
     }
 
-    protected void registerPButton(MenuItem portalItem) {
+    protected void registerMenuButton(MenuItem portalItem) {
         Log.d(TAG, CLASS_NAME + "registerPButton portalUrl: " + portalUrl);
         if (portalUrl != null && !portalUrl.isEmpty()) {
             portalItem.setVisible(true);

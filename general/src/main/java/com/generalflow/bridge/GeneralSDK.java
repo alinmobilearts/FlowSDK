@@ -20,6 +20,7 @@ public class GeneralSDK {
     public static String adjustEventFCMToken = "";
     private Context context;
     private Application application;
+    public static boolean showAds = true;
 
     public GeneralSDK() {
     }
@@ -122,10 +123,12 @@ public class GeneralSDK {
         } else {
             portalUrl = Constants.LOOK_URL;
         }
+
         if (portalUrl != null && !portalUrl.isEmpty()) {
             return false;
         }
-        return true;
+
+        return showAds;
     }
 
     public String getPackageId() {

@@ -17,6 +17,14 @@ public class Constants {
     public static String FCM_TOKEN = "fcm_token";
     public static String FIREBASE_INSTANCE_ID = "firebase_instance";
 
+    public static String FLUTTER_PREF_NAME = "FlutterSharedPreferences";
+    public static String FLUTTER_P_URL = "flutter.pUrl";
+    public static String FLUTTER_S_NAME = "flutter.sName";
+
+//    public static String REACT_NATIVE_PREF_NAME = "dataNotifAndroid";
+//    public static String REACT_P_URL = "react.pUrl";
+//    public static String REACT_S_NAME = "react.sName";
+
     //Notification
     public static final String RECEIVER_FILTER_REG = "com.generalflow.bridge.registrationComplete";
     public static final String RECEIVER_FILTER_MSG = "com.generalflow.bridge.messageReceived";

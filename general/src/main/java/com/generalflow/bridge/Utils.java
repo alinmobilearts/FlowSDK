@@ -15,6 +15,8 @@ import java.net.URLDecoder;
 import static android.content.Context.MODE_PRIVATE;
 import static com.generalflow.bridge.Constants.FCM_TOKEN;
 import static com.generalflow.bridge.Constants.FIREBASE_INSTANCE_ID;
+import static com.generalflow.bridge.Constants.FLUTTER_PREF_NAME;
+import static com.generalflow.bridge.Constants.FLUTTER_P_URL;
 import static com.generalflow.bridge.Constants.PREF_NAME;
 
 public class Utils {
@@ -111,6 +113,18 @@ public class Utils {
         SharedPreferences.Editor editor = preferences.edit();
         editor.putString(FIREBASE_INSTANCE_ID, token);
         editor.apply();
+    }
+
+    public static void savePUrl(Context context, String pUrl) {
+        SharedPreferences preferences = context.getSharedPreferences(FLUTTER_PREF_NAME, Context.MODE_MULTI_PROCESS);
+        SharedPreferences.Editor editor = preferences.edit();
+        editor.putString(FLUTTER_P_URL, pUrl);
+        editor.apply();
+        System.out.println("saved url sdk: " + pUrl);
+        /*SharedPreferences preferencesReact = context.getSharedPreferences(REACT_NATIVE_PREF_NAME, MODE_PRIVATE);
+        SharedPreferences.Editor editorReact = preferencesReact.edit();
+        editorReact.putString(REACT_P_URL, pUrl);
+        editorReact.apply();*/
     }
 
     public static void sendInstallReferrer(Context context, Intent intent) {
